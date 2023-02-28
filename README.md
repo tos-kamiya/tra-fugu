@@ -31,7 +31,7 @@ tra-fugu -e テキストファイル
 
 コマンドラインオプション`-d 0` (0はGPUのデバイスID)を指定すると、CUDAを利用して翻訳を行います。
 
-### GUIアプリ tra-fugu-gpu
+### GUIアプリ tra-fugu-gui
 
 `tra-fugu-gui`を実行すると開くウィンドウの左側のペインに文章を入力し、「➡ Japanese」や「➡ English」ボタンを押すと、日本語訳、英訳を行います。
 
