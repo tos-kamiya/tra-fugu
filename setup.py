@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="tra-fugu",
-    version="0.4.0",
+    version="0.5.0",
     description="Translate Japanese and English texts into one another, by FuguMT Model",
     url="https://github.com/tos-kamiya/tra-fugu",
     author="Toshihiro Kamiya",
@@ -18,7 +18,8 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        "numpy", "sentencepiece", "torch", "transformers", "sacremoses", "guietta",
+        "numpy", "sentencepiece", "torch", "transformers", "sacremoses",
+        "guietta", "qt-material",
     ],
     entry_points={
         "console_scripts": [

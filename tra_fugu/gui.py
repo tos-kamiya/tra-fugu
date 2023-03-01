@@ -1,16 +1,34 @@
 import argparse
 
-from guietta import Gui, _, ___, III, QPlainTextEdit, B, L
 from transformers import pipeline
+import guietta
+from guietta import Gui, _, ___, III, QPlainTextEdit, B, L
+from qt_material import apply_stylesheet, list_themes
 
 from .utils import paragraph_iter
+
+
+DEFAULT_THEME = 'light_blue'
 
 
 def main():
     parser = argparse.ArgumentParser(description='Tra-Fugu GUI, A GUI Translation app between English and Japanese')
     parser.add_argument('-d', '--device', type=int, default=-1, help='Run translation on a GPU of the ID (ID >= 0).')
+    parser.add_argument('-t', '--theme', type=str, default=DEFAULT_THEME, help='Theme name. (default: %s)' % DEFAULT_THEME)
+    parser.add_argument('--list-themes', action='store_true', help='Print theme names and exit.')
+
     args = parser.parse_args()
+
+    if args.list_themes:
+        print('Available themes:')
+        for theme_name in list_themes():
+            if theme_name.endswith('.xml'):
+                theme_name = theme_name[:-len('.xml')]
+            print('  ' + theme_name)
+        return
+
     gpu_id = args.device
+    qt_material_theme = args.theme + '.xml'
 
     ej_translator = None
     je_translator = None
@@ -92,6 +110,8 @@ def main():
 
     buttons_set_enabled(gui, False, '[Info] Loading translation models...')
     gui.execute_in_background(load_model, callback=load_model_done)
+
+    apply_stylesheet(guietta.app, theme=qt_material_theme)
 
     gui.run()
 
