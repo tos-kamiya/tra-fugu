@@ -55,6 +55,7 @@ def main():
     o.setFocus()
     o.setStyleSheet("background-color: #FFFFFF")
     o.setPlaceholderText('Put the text you want to translate.')
+    original_text_box = ['']
 
     gui.translated.setStyleSheet("background-color: #b0b0b0")
 
@@ -92,7 +93,11 @@ def main():
         )
 
     def original_text_changed(gui, *args):
-        gui.translated.setStyleSheet("background-color: #b0b0b0")
+        t = gui.original.toPlainText()
+        is_changed = t.rstrip() != original_text_box[0].rstrip()
+        if is_changed:
+            gui.translated.setStyleSheet("background-color: #b0b0b0")
+            original_text_box[0] = t
 
     gui.events(
         [ to_japanese, to_english, _, _, _, _ ],
