@@ -38,7 +38,7 @@ def main():
     o.setStyleSheet("background-color: #FFFFFF")
     o.setPlaceholderText('Put the text you want to translate.')
 
-    gui.translated.setStyleSheet("background-color: #A0A0A0")
+    gui.translated.setStyleSheet("background-color: #b0b0b0")
 
     def translate_task(text, translator):
         assert translator is not None
@@ -73,9 +73,12 @@ def main():
             callback=translation_done_callback
         )
 
+    def original_text_changed(gui, *args):
+        gui.translated.setStyleSheet("background-color: #b0b0b0")
+
     gui.events(
         [ to_japanese, to_english, _, _, _, _ ],
-        [ _, _, _, _, _, _],
+        [ ('textChanged', original_text_changed), _, _, _, _, _],
         [ _, _, _, _, _, _],
         [ _, _, _, _, _, _],
     )

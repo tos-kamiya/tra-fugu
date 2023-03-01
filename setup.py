@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="tra-fugu",
-    version="0.3.0",
+    version="0.4.0",
     description="Translate Japanese and English texts into one another, by FuguMT Model",
     url="https://github.com/tos-kamiya/tra-fugu",
     author="Toshihiro Kamiya",
